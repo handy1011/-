@@ -1,0 +1,22 @@
+#include <Stepper.h>
+
+const int stepsPerRevolution = 200;  // 스텝 모터의 한 바퀴당 스텝 수
+const int motorPin1 = 2;  // 모터의 핀 번호 설정
+const int motorPin2 = 3;
+const int motorPin3 = 4;
+const int motorPin4 = 5;
+
+// 스텝 모터 객체 생성
+Stepper myStepper(stepsPerRevolution, motorPin1, motorPin2, motorPin3, motorPin4);
+
+void setup() {
+  // 시리얼 통신을 시작
+  Serial.begin(9600);
+}
+
+void loop() {
+  // 시계 방향으로 회전
+  myStepper.setSpeed(3.5 * 360.0 / stepsPerRevolution);  // 3.5Hz에 해당하는 각도로 회전
+  myStepper.step(stepsPerRevolution);  // 한 바퀴 회전
+  delay(300);  // 0.3초 동안 딜레이
+}
